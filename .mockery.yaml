@@ -1,0 +1,70 @@
+with-expecter: true
+resolve-type-alias: false
+disable-version-string: true
+issue-845-fix: true
+packages:
+  github.com/ivanov-matvey/room-booking/internal/usecase/slot:
+    config:
+      dir: "mocks/usecase/slot"
+      outpkg: "mockusecaseslot"
+    interfaces:
+      Repository:
+      RoomRepository:
+      ScheduleRepository:
+  github.com/ivanov-matvey/room-booking/internal/usecase/booking:
+    config:
+      dir: "mocks/usecase/booking"
+      outpkg: "mockusecasebooking"
+    interfaces:
+      ConferenceService:
+      Repository:
+      SlotRepository:
+  github.com/ivanov-matvey/room-booking/internal/usecase/room:
+    config:
+      dir: "mocks/usecase/room"
+      outpkg: "mockusecaseroom"
+    interfaces:
+      Repository:
+  github.com/ivanov-matvey/room-booking/internal/usecase/auth:
+    config:
+      dir: "mocks/usecase/auth"
+      outpkg: "mockusecaseauth"
+    interfaces:
+      UserRepository:
+  github.com/ivanov-matvey/room-booking/internal/usecase/schedule:
+    config:
+      dir: "mocks/usecase/schedule"
+      outpkg: "mockusecaseschedule"
+    interfaces:
+      Repository:
+      RoomRepository:
+  github.com/ivanov-matvey/room-booking/internal/http/handlers/auth:
+    config:
+      dir: "mocks/http/handlers/auth"
+      outpkg: "mockauthhandler"
+    interfaces:
+      UseCase:
+  github.com/ivanov-matvey/room-booking/internal/http/handlers/booking:
+    config:
+      dir: "mocks/http/handlers/booking"
+      outpkg: "mockbookinghandler"
+    interfaces:
+      UseCase:
+  github.com/ivanov-matvey/room-booking/internal/http/handlers/room:
+    config:
+      dir: "mocks/http/handlers/room"
+      outpkg: "mockroomhandler"
+    interfaces:
+      UseCase:
+  github.com/ivanov-matvey/room-booking/internal/http/handlers/slot:
+    config:
+      dir: "mocks/http/handlers/slot"
+      outpkg: "mockslothandler"
+    interfaces:
+      UseCase:
+  github.com/ivanov-matvey/room-booking/internal/http/handlers/schedule:
+    config:
+      dir: "mocks/http/handlers/schedule"
+      outpkg: "mockschedulehandler"
+    interfaces:
+      UseCase:

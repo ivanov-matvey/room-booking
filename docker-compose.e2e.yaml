@@ -1,0 +1,30 @@
+services:
+  postgres_e2e:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: roomdb_e2e
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app_e2e:
+    build: .
+    ports:
+      - "8081:8080"
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres_e2e:5432/roomdb_e2e?sslmode=disable
+      JWT_SECRET: e2e-test-secret
+      JWT_EXPIRATION_HOURS: 24
+      PORT: 8080
+    depends_on:
+      postgres_e2e:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/_info || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 10

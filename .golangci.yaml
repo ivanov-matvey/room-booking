@@ -1,0 +1,40 @@
+version: "2"
+
+run:
+  timeout: 5m
+
+linters:
+  default: none
+  enable:
+    - bodyclose
+    - errcheck
+    - gosec
+    - ineffassign
+    - misspell
+    - prealloc
+    - revive
+    - staticcheck
+    - testifylint
+    - unconvert
+    - govet
+
+  settings:
+    revive:
+      rules:
+        - name: exported
+          disabled: true
+
+formatters:
+  enable:
+    - gofmt
+    - goimports
+  settings:
+    goimports:
+      local-prefixes:
+        - github.com/ivanov-matvey/room-booking
+
+exclusions:
+  rules:
+    - path: _test\.go
+      linters:
+        - errcheck
